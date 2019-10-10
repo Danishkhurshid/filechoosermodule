@@ -1,0 +1,8 @@
+name: File Chooser Field
+description: 'Enable file uploads from Dropbox, Box, OneDrive, Google Drive'
+core: 8.x
+type: module
+package: Fields
+configure: file_chooser_field.admin_config
+dependencies:
+  - file

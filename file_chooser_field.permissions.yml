@@ -1,0 +1,2 @@
+permission_callbacks:
+  - \Drupal\file_chooser_field\Services\FileChooserFieldCore::permissions

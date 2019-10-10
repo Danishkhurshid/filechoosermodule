@@ -1,0 +1,3 @@
+services:
+  file_chooser_field_core:
+    class: Drupal\file_chooser_field\Services\FileChooserFieldCore

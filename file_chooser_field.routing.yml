@@ -1,0 +1,15 @@
+file_chooser_field.admin_config:
+  path: 'admin/config/media/file-chooser-field'
+  defaults:
+    _title: 'File Chooser Field'
+    _form: '\Drupal\file_chooser_field\Form\FileChooserFieldSettingsForm'
+  requirements:
+    _permission: 'administer site configuration'
+
+file_chooser_field.redirect_callback:
+  path: 'redirectCallback/{phpClassName}'
+  defaults:
+    _title: 'Redirect URL callback'
+    _controller: '\Drupal\file_chooser_field\Controller\FileChooserFieldPageController::redirectCallback'
+  requirements:
+    _access: 'TRUE'

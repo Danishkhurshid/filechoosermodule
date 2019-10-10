@@ -1,0 +1,6 @@
+file_chooser_field.admin_config:
+  title: File Chooser Field
+  parent: system.admin_config_media
+  description: 'Configure File Chooser Field settings.'
+  route_name: file_chooser_field.admin_config
+  weight: 0

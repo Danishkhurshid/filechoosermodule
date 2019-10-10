@@ -1,0 +1,15 @@
+{#
+/**
+ * @file
+ * Default file chooser field button template.
+ *
+ * Available variables:
+ * - class: The latitude value.
+ * - data_attributes: The longitude value.
+ * - label: The longitude value.
+ */
+#}
+{# {{kint(data_attributes)}} #}
+{% spaceless %}
+<a href="#" class="button {{ class }}" {{ data_attributes }}><span>{{ label }}</span></a>
+{% endspaceless %}
