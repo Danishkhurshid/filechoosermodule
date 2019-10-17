@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains Drupal\file_chooser_field\Plugins\FileChooserFieldPlugin.
- */
-
 namespace Drupal\file_chooser_field\Plugins;
 
 /**
@@ -23,7 +18,7 @@ abstract class FileChooserFieldPlugin {
   /**
    * Button CSS class name.
    *
-   * @return string.
+   * @return string
    */
   abstract public function cssClass();
 
@@ -44,14 +39,14 @@ abstract class FileChooserFieldPlugin {
    * Configuration form.
    * Drupal form API elements.
    *
-   * @return array.
+   * @return array
    */
   abstract public function configForm($config);
 
   /**
    * Submit configuration form.
    *
-   * @return array.
+   * @return array
    */
   public function submitForm($config, $form_state) {
     // Save configForm settings.
@@ -60,10 +55,10 @@ abstract class FileChooserFieldPlugin {
   /**
    * Download remote file to Drupal.
    *
-   * @return public://[remote-file-name]
-   * @see file_chooser_field_save_upload().
+   * @return public[remotefilename]
+   * @see file_chooser_field_save_upload()
    */
-  abstract public function downloadFile($element, $destination, $url);
+  abstract public function downloadFile($destination, $url);
 
   /**
    * Redirect callback.
@@ -75,4 +70,5 @@ abstract class FileChooserFieldPlugin {
   public function redirectCallback($config) {
     // This is where you would put all required code for the response.
   }
+
 }

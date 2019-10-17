@@ -1,19 +1,14 @@
 <?php
 
-/**
- * @file
- * Contains Drupal\file_chooser_field\Plugins\DropboxChooserAPI.
- */
-
 namespace Drupal\file_chooser_field\Plugins;
 
+use Drupal\file_chooser_field\Plugins\FileChooserFieldPlugin;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
-use Drupal\file_chooser_field\Plugins;
 
 /**
  * Dropbox Chooser API integration class.
  */
-class DropboxChooserAPI extends Plugins\FileChooserFieldPlugin {
+class DropboxChooserAPI extends FileChooserFieldPlugin {
 
   use StringTranslationTrait;
 
@@ -61,7 +56,7 @@ class DropboxChooserAPI extends Plugins\FileChooserFieldPlugin {
         'library' => [
           'file_chooser_field/file_chooser_field.dropbox',
         ],
-      ]
+      ],
     ];
   }
 
@@ -74,7 +69,7 @@ class DropboxChooserAPI extends Plugins\FileChooserFieldPlugin {
       '#title'         => $this->t('Dropbox App Key'),
       '#type'          => 'textfield',
       '#default_value' => $config->get('dropbox_app_key'),
-      '#description'   => $this->t('Please <a href="https://www.dropbox.com/developers/apps" target="_blank">create a Drop-in app</a> to get the App Key.')
+      '#description'   => $this->t('Please <a href="https://www.dropbox.com/developers/apps" target="_blank">create a Drop-in app</a> to get the App Key.'),
     ];
 
     return $form;
@@ -92,7 +87,7 @@ class DropboxChooserAPI extends Plugins\FileChooserFieldPlugin {
   /**
    * {@inheritdoc}
    */
-  public function downloadFile($element, $destination, $url) {
+  public function downloadFile($destination, $url) {
     return system_retrieve_file($url, $destination);
   }
 

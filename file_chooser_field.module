@@ -1,6 +1,10 @@
 <?php
 
 /**
+ * @file
+ */
+
+/**
  * Implements hook_file_chooser_field_plugins().
  */
 function file_chooser_field_file_chooser_field_plugins() {
@@ -39,24 +43,27 @@ function file_chooser_field_theme() {
         'class'      => NULL,
         'attributes' => [],
       ],
-      'template'  => 'file-chooser-field',
-    ]
+    ],
   ];
 }
 
 /**
- * Preprocess function for the file-chooser-field.tpl.php.
+ * Preprocess function for the file-chooser-field
  */
 function file_chooser_field_preprocess_file_chooser_field(&$vars) {
-
   if (count($vars['attributes'])) {
     foreach ($vars['attributes'] as $data => $value) {
-      $data_attributes[] = ' data-' . $data . '="' . $value . '"';
+      if ($data == "plugin") {
+        $value = explode('\\', $value);
+        $value = end($value);
+        $data_attributes[] = ' data-' . $data . '=' . $value . '';
+      }
+      else {
+        $data_attributes[] = ' data-' . $data . '="' . $value . '"';
+      }
+      $vars['data_attributes'] = join(" ", $data_attributes);
     }
   }
-
-  $vars['data_attributes'] = join(" ", $data_attributes);
-
 }
 
 /**
@@ -64,35 +71,50 @@ function file_chooser_field_preprocess_file_chooser_field(&$vars) {
  */
 function file_chooser_field_library_info_build() {
   $libraries = [];
-  if (Drupal::moduleHandler()->moduleExists('file_chooser_field')){ 
+  if (Drupal::moduleHandler()->moduleExists('file_chooser_field')) {
     $config = \Drupal::config('file_chooser_field.settings');
 
     $libraries['file_chooser_field.onedrive'] = [
-        'js' => [
-            'https://js.live.net/v5.0/OneDrive.js' => [
-                'type' => 'external',
-                'minified' => true,
-                'attributes' => [
-                    'id'        => 'onedrive-js',
-                    'client-id' => $config->get('onedrive_app_id'),
-                ],
-            ],
+      'js' => [
+        'https://js.live.net/v5.0/OneDrive.js' => [
+          'type' => 'external',
+          'minified' => TRUE,
+          'attributes' => [
+            'id'        => 'onedrive-js',
+            'client-id' => $config->get('onedrive_app_id'),
+          ],
         ],
+      ],
     ];
 
     $libraries['file_chooser_field.dropbox'] = [
       'js' => [
-          'https://www.dropbox.com/static/api/2/dropins.js' => [
-              'type' => 'external',
-              'minified' => true,
-              'attributes' => [
-                'id'           => 'dropboxjs',
-                'data-app-key' => $config->get('dropbox_app_key'),
-              ],
+        'https://www.dropbox.com/static/api/2/dropins.js' => [
+          'type' => 'external',
+          'minified' => TRUE,
+          'attributes' => [
+            'id'           => 'dropboxjs',
+            'data-app-key' => $config->get('dropbox_app_key'),
           ],
+        ],
       ],
-  ];
+    ];
   }
 
   return $libraries;
+}
+
+/**
+ * Implements hook_file_chooser_field_plugins_alter().
+ */
+function hook_file_chooser_field_plugins_alter(&$plugins) {
+  // Alter File Chooser Field plugins.
+}
+
+/**
+ * Implements hook_file_chooser_field_download().
+ */
+function hook_file_chooser_field_download($phpClassName, $remote_file, $local_file) {
+  // This could be used to track file downloades.
+  // @todo add better description.
 }

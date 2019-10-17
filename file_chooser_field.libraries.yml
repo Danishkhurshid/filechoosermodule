@@ -9,7 +9,6 @@ file_chooser_field.core:
   css: 
     theme:
       css/file_chooser_field.css:{}
-    
 file_chooser_field.form:
   version: 8.x-1.x
   dependencies:
@@ -18,24 +17,6 @@ file_chooser_field.form:
     - core/drupalSettings
   js:
     js/file_chooser_field.form.js: {}
-
-# file_choose_field.plugins:
-#   version: 8.x-1.x
-#   dependencies:
-#     - core/drupal
-#     - core/jquery
-#     - core/drupalSettings
-#   js:
-#     js/file_chooser_field.box.js: {}
-#     js/file_chooser_field.dropbox.js: {}
-#     js/file_chooser_field.example.js: {}
-#     js/file_chooser_field.google.js: {}
-#     js/file_chooser_field.onedrive.js: {}
-#     js/file_chooser_field.js: {}
-#   css: 
-#     theme:
-#       css/file_chooser_field.css:{}
-
 file_chooser_field.box:
   header: true
   version: 8.x-1.x
@@ -46,7 +27,6 @@ file_chooser_field.box:
   js:
     js/file_chooser_field.box.js: {}
     https://app.box.com/js/static/select.js : {type: external}
-
 file_chooser_field.dropbox:
   header: true
   version: 8.x-2.x 
@@ -56,7 +36,6 @@ file_chooser_field.dropbox:
     - core/drupalSettings
   js:
     js/file_chooser_field.dropbox.js: {}
-
 file_chooser_field.example:
   header: true
   version: 8.x-2.x 
@@ -66,7 +45,6 @@ file_chooser_field.example:
     - core/drupalSettings
   js:
     js/file_chooser_field.example.js: {}  
-
 file_chooser_field.google:
   version: 8.x-2.x 
   dependencies:

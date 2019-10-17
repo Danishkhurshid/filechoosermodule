@@ -1,19 +1,14 @@
 <?php
 
-/**
- * @file
- * Contains Drupal\file_chooser_field\Plugins\BoxPickerAPI.
- */
-
 namespace Drupal\file_chooser_field\Plugins;
 
+use Drupal\file_chooser_field\Plugins\FileChooserFieldPlugin;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
-use Drupal\file_chooser_field\Plugins;
 
 /**
  * The Box Picker API integration class.
  */
-class BoxPickerAPI extends Plugins\FileChooserFieldPlugin {
+class BoxPickerAPI extends FileChooserFieldPlugin {
 
   use StringTranslationTrait;
 
@@ -52,9 +47,9 @@ class BoxPickerAPI extends Plugins\FileChooserFieldPlugin {
       '#attached' => [
         'library' => 'file_chooser_field/file_chooser_field.box',
         'drupalSettings' => [
-          'box_client_id' => $config->get('box_client_id')
-        ]
-      ]
+          'box_client_id' => $config->get('box_client_id'),
+        ],
+      ],
     ];
   }
 
@@ -85,7 +80,7 @@ class BoxPickerAPI extends Plugins\FileChooserFieldPlugin {
   /**
    * {@inheritdoc}
    */
-  public function downloadFile($element, $destination, $url) {
+  public function downloadFile($destination, $url) {
     $local_file = '';
     list($file_url, $orignal_name) = explode('@@@', $url);
     $local_file = system_retrieve_file($file_url, $destination . '/' . $orignal_name);

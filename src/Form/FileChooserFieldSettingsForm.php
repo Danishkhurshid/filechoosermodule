@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\file_chooser_field\Form\FileChooserFieldSettingsForm.
- */
-
 namespace Drupal\file_chooser_field\Form;
 
 use Drupal\Core\Form\FormStateInterface;
@@ -12,20 +7,15 @@ use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-use Drupal\file_chooser_field\Services\FileChooserFieldCore;
-use Drupal\file_chooser_field\Plugins;
-
 /**
  * Configure site information settings for this site.
  */
 class FileChooserFieldSettingsForm extends ConfigFormBase {
 
   /**
-   * Drupal\file_chooser_field\Services\FileChooserFieldCore
-   *
+   * Drupal\file_chooser_field\Services\FileChooserFieldCore.
    */
   protected $fileChooserFieldCore;
-
 
   /**
    * Constructs a \Drupal\file_chooser_field\FileChooserFieldSettingsForm object.
@@ -33,7 +23,7 @@ class FileChooserFieldSettingsForm extends ConfigFormBase {
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   The factory for configuration objects.
    */
-  public function __construct(ConfigFactoryInterface $config_factory, $file_chooser_field_core ) {
+  public function __construct(ConfigFactoryInterface $config_factory, $file_chooser_field_core) {
     parent::__construct($config_factory);
     $this->fileChooserFieldCore = $file_chooser_field_core;
 
@@ -73,7 +63,7 @@ class FileChooserFieldSettingsForm extends ConfigFormBase {
       '#type' => 'vertical_tabs',
       '#attached' => [
         'library' => [
-          'file_chooser_field/file_chooser_field.form'
+          'file_chooser_field/file_chooser_field.form',
         ],
       ],
     ];
@@ -104,7 +94,7 @@ class FileChooserFieldSettingsForm extends ConfigFormBase {
         $form[$name]['file_chooser_field_' . $name . '_redirect_url'] = [
           '#markup' => '<em>' . \Drupal::url('file_chooser_field.redirect_callback', ['phpClassName' => $plugin['phpClassName']], ['absolute' => TRUE]) . '</em>',
           '#prefix' => '<div><strong>' . $this->t('Redirect URL') . '</strong></div>',
-          '#suffix' => '<div class="description">'  .$this->t('This is the URL you will need for the redirect URL/OAuth authentication') . '</div>',
+          '#suffix' => '<div class="description">' . $this->t('This is the URL you will need for the redirect URL/OAuth authentication') . '</div>',
         ];
       }
 

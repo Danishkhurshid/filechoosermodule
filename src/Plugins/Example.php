@@ -1,19 +1,14 @@
 <?php
 
-/**
- * @file
- * Contains Drupal\file_chooser_field\Plugins\Example.
- */
-
 namespace Drupal\file_chooser_field\Plugins;
 
+use Drupal\file_chooser_field\Plugins\FileChooserFieldPlugin;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
-use Drupal\file_chooser_field\Plugins;
 
 /**
  * File Chooser Field plugin example.
  */
-class Example extends Plugins\FileChooserFieldPlugin {
+class Example extends FileChooserFieldPlugin {
 
   use StringTranslationTrait;
 
@@ -36,7 +31,8 @@ class Example extends Plugins\FileChooserFieldPlugin {
    */
   public function attributes($info) {
     return [
-      'plugin'       => get_class($this), // Required
+    // Required.
+      'plugin'       => get_class($this),
       'cardinality'  => $info['cardinality'],
       'description'  => strip_tags($info['description']),
       'max-filesize' => $info['upload_validators']['file_validate_size'][0],
@@ -51,7 +47,7 @@ class Example extends Plugins\FileChooserFieldPlugin {
     return [
       '#attached' => [
         'library' => ['file_chooser_field/file_chooser_field.example'],
-      ]
+      ],
     ];
   }
 
@@ -82,10 +78,10 @@ class Example extends Plugins\FileChooserFieldPlugin {
   /**
    * {@inheritdoc}
    */
-  public function downloadFile($element, $destination, $url) {
+  public function downloadFile($destination, $url) {
     $local_file = '';
     list($file_url, $orignal_name) = explode('@@@', $url);
-    $local_file = system_retrieve_file($file_url, $destination  . '/' . $orignal_name);
+    $local_file = system_retrieve_file($file_url, $destination . '/' . $orignal_name);
     return $local_file;
   }
 
