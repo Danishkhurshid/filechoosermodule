@@ -18,7 +18,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\file_chooser_field\Services\FileChooserFieldCore;
 
 /**
- * Plugin implementation of the 'gardengnome_player' widget.
+ * Plugin implementation of the 'file_chooser_field' widget.
  *
  * @FieldWidget (
  *   id = "file_chooser_widget",
@@ -51,12 +51,27 @@ class FileChooserFieldFileWidget extends FileWidget implements ContainerFactoryP
   }
 
   /**
+   * {@inheritdoc}
+   */
+  public static function defaultSettings() {
+    return parent::defaultSettings();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function settingsForm(array $form, FormStateInterface $form_state) {
+    $element = parent::settingsForm($form, $form_state);
+    return $element;
+  }
+
+
+  /**
    * Special handling for draggable multiple widgets and 'add more' button.
    */
   protected function formMultipleElements(FieldItemListInterface $items, array &$form, FormStateInterface $form_state) {
     $elements = parent::formMultipleElements($items, $form, $form_state);
     return $elements;
-
   }
 
   /**
